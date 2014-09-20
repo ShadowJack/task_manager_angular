@@ -9,5 +9,4 @@ class ApplicationController < ActionController::Base
 
 end
 
-#TODO: create appropriate routes for api 
-#TODO: create tasks and check if devise authentication is ok
+#TODO: create tasks

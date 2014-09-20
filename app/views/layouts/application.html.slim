@@ -24,27 +24,27 @@ html
               #curr-user
                 =current_user.email
             li class="has-form"
-              = link_to 'Edit profile', edit_user_registration_path
-            li class="divider"
-            li class="has-form"
               = link_to "Logout", destroy_user_session_path, method: :delete
           -else
             li class="has-form"
-              = link_to "Sign up", new_user_registration_path
+              = link_to "Sign up", '#', data: {:'reveal-id' => 'signupModal'}
+              div (id="signupModal" class="reveal-modal" data-reveal)
+                = render 'devise/registrations/new'
+                a(class="close-reveal-modal") &#215;
             li calss="divider"
             li class="has-form"
-              = link_to "Login", new_user_session_path
-              
+              = link_to "Login", '#', data: {:'reveal-id' => 'loginModal'}
+              div (id="loginModal" class="reveal-modal" data-reveal)
+                = render 'devise/sessions/new'
+                a(class="close-reveal-modal") &#215;
               
     -if notice
       div(data-alert class="alert-box info radius")
         =notice
-        a href="#" class="close"
-          '&times;
+        a(href="#" class="close") &times;
     -if alert
-        div(data-alert class="alert-box alert radius")ß
-        =alert
-        a href="#" class="close"
-          '&times;
+        div(data-alert class="alert-box alert radius")
+          =alert
+          a(href="#" class="close") &times;
       
     = yield
