@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    title My App
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag "vendor/modernizr"
+    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    = csrf_meta_tags
+ 
+  body
+    nav(class="top-bar" data-topbar role="navigation")
+      ul class="title-area"
+        li class="name"
+          h1
+            a href="#" 
+              'Task Manager
+
+      section class="top-bar-section"
+        ul class="right"
+          -if user_signed_in?
+            li class="has-form"
+              #curr-user
+                =current_user.email
+            li class="has-form"
+              = link_to 'Edit profile', edit_user_registration_path
+            li class="divider"
+            li class="has-form"
+              = link_to "Logout", destroy_user_session_path, method: :delete
+          -else
+            li class="has-form"
+              = link_to "Sign up", new_user_registration_path
+            li calss="divider"
+            li class="has-form"
+              = link_to "Login", new_user_session_path
+              
+              
+    -if notice
+      div(data-alert class="alert-box info radius")
+        =notice
+        a href="#" class="close"
+          '&times;
+    -if alert
+        div(data-alert class="alert-box alert radius")ß
+        =alert
+        a href="#" class="close"
+          '&times;
+      
+    = yield
